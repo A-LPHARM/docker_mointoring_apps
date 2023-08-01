@@ -1,0 +1,90 @@
+Prometheus Query Language (PromQL)
+
+	container_cpu_system_seconds_total{name="cadvisor"}
+
+	container_cpu_system_seconds_total{name=~"ca.+"}
+
+	container_cpu_system_seconds_total{name ! = " "}
+	
+
+rate() function:
+
+	rate(container_cpu_system_seconds_total{name="cadvisor"}[1m])
+
+	Can only be used for a counter metric
+
+
+sum() function
+	If you have multiple containers running, you can use sum() to add all the values
+	and graph by container using the name() function
+
+
+
+	sum(rate(container_cpu_system_seconds_total[1m])) by (name)
+
+
+Arithmetic
+	(time() - process_start_time_seconds{instance="localhost:9090", job="prometheus"})
+
+
+
+Use container_start_time_seconds
+
+	container_start_time_seconds{name="jenkins"}
+	- number of seconds past epoch time (January 1, 1970)
+
+
+
+time() function to get current time
+
+	
+	(time() - container_start_time_seconds{name="jenkins"})
+	
+	(time() - container_start_time_seconds{name="cadvisor"}) / 3600
+
+
+
+Monitor HTTP requests on your application
+	rate(prometheus_http_request_duration_seconds_count[1m])
+
+
+HTTP Latency
+	rate(prometheus_http_request_duration_seconds_sum[1m]) / rate(prometheus_http_request_duration_seconds_count[1m])
+
+
+memory usage
+	sum by (name) (container_memory_usage_bytes{name!=""})
+
+
+	sum by (name) (container_cpu_system_seconds_total)
+
+
+	took(2, sum by (name) (container_cpu_system_seconds_total))
+
+
+	bottomk(2, sum by (name) (container_cpu_system_seconds_total))
+
+	avg_over_time(container_memory_usage_bytes{name="jenkins"}[1m])
+
+	avg_over_time(container_memory_usage_bytes{name="cadvisor"}[1m])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
