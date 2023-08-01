@@ -34,15 +34,20 @@ docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v C:\Users\USE
 
 ### cAdvisor
 
-cAdvisor is a container monitoring tool that collects metrics and logs. However, it lacks advanced visualization features. It can send collected data to various destinations like Prometheus, StatD, Elasticsearch, Kafka, InfluxDB, and CollectD.
+cAdvisor is a container monitoring tool that collects metrics and logs. However, it lacks advanced visualization features. It can send collected data to various destinations like Prometheus, StatD, Elasticsearch, Kafka, InfluxDB, and fluentD.
+![Screenshot (10)](https://github.com/A-LPHARM/docker_mointoring_apps/assets/123018722/f4da81ed-6831-4280-83b9-c732cccdbddb)
+
 
 ### Prometheus
 
 Prometheus is a powerful tool for data collection and time-series storage. It gathers and scrapes data while utilizing promQL for querying your data.
+![Screenshot (11)](https://github.com/A-LPHARM/docker_mointoring_apps/assets/123018722/07110e6d-a5bc-432d-8eab-27d349c80f8e)
 
 ### Node Exporter
 
 Node Exporter provides metrics from containers at an endpoint.
+![Screenshot (9)](https://github.com/A-LPHARM/docker_mointoring_apps/assets/123018722/792f4cd1-799f-4364-9580-9d1f06510262)
+
 
 ### Grafana
 
